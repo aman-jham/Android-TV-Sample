@@ -13,8 +13,10 @@ The `SearchFragment`,`MovieFragment`,`SportsFragment`, etc.. extents `Fragment` 
 
 ## Screenshots
 
-[![Screenshot](screenshots/atv-leanback-all.png)](https://raw.githubusercontent.com/googlesamples/androidtv-Leanback/master/screenshots/atv-leanback-all.png)
-
+![Image2](screenshots/1.png)
+![Image2](screenshots/2.png)
+![Image3](screenshots/3.png)
+![Image4](screenshots/4.png)
 - 
 ### Find this project useful ? :heart:
 
