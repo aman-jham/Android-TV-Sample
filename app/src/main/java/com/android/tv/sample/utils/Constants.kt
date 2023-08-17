@@ -1,7 +1,9 @@
-package com.tutorial.tvapp.utils
+package com.android.tv.sample.utils
 
 object Constants {
 
+    const val JSON: String = "movies.json"
+    const val IMAGE_URL: String = "https://www.themoviedb.org/t/p/w780"
     const val MENU_SEARCH = "search"
     const val MENU_HOME = "home"
     const val MENU_TV = "tv"
@@ -16,7 +18,5 @@ object Constants {
     const val INTENT_MENU = "menu"
     const val SELECTED_ID = "id"
 
-
-    const val API_KEY = "Paste Your Key Here"
 
 }

@@ -4,9 +4,7 @@ import android.os.Bundle
 import android.view.View
 import androidx.leanback.app.RowsSupportFragment
 import androidx.leanback.widget.*
-import com.android.tv.sample.data.local.CastResponse
 import com.android.tv.sample.data.local.DataModel
-import com.android.tv.sample.presenter.CastItemPresenter
 import com.android.tv.sample.presenter.ItemPresenter
 
 
@@ -37,7 +35,7 @@ class ListFragment : RowsSupportFragment() {
 
     fun bindData(dataList: DataModel) {
 
-        dataList.result.forEachIndexed { index, result ->
+        dataList.result.forEachIndexed { _, result ->
             val arrayObjectAdapter = ArrayObjectAdapter(ItemPresenter())
 
             result.details.forEach {
@@ -52,17 +50,6 @@ class ListFragment : RowsSupportFragment() {
 
     }
 
-    fun bindCastData(list: List<CastResponse.Cast>) {
-        val arrayObjectAdapter = ArrayObjectAdapter(CastItemPresenter())
-
-        list.forEach { content ->
-            arrayObjectAdapter.add(content)
-        }
-
-        val headerItem = HeaderItem("Cast & Crew")
-        val listRow = ListRow(headerItem, arrayObjectAdapter)
-        rootAdapter.add(listRow)
-    }
 
     fun setOnContentSelectedListener(listener: (DataModel.Result.Detail) -> Unit) {
         this.itemSelectedListener = listener
@@ -100,10 +87,5 @@ class ListFragment : RowsSupportFragment() {
 
     }
 
-    fun requestFocus(): View {
-        val view = view
-        view?.requestFocus()
-        return view!!
-    }
 
 }

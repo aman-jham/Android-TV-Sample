@@ -17,80 +17,70 @@ import com.android.tv.sample.fragment.SettingsFragment
 import com.android.tv.sample.fragment.SportsFragment
 import com.android.tv.sample.fragment.TvShowFragment
 import com.android.tv.sample.utils.Common
-import com.tutorial.tvapp.utils.Constants
+import com.android.tv.sample.utils.Constants
 
-class MainActivity : FragmentActivity(), View.OnKeyListener {
+@Suppress("DEPRECATION")
+class MainActivity : FragmentActivity(), View.OnKeyListener, View.OnClickListener {
 
     private lateinit var activityMainBinding: ActivityMainBinding
-    private var SIDE_MENU = false
+    private var isSideMenuEnabled = false
     private var selectedMenu = Constants.MENU_HOME
     private lateinit var lastSelectedMenu: View
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         activityMainBinding = ActivityMainBinding.inflate(layoutInflater)
         val view = activityMainBinding.root
         setContentView(view)
+        setUpListeners()
+        setUpInitialLayout()
+    }
 
+    private fun setUpListeners() {
+        activityMainBinding.btnSearch.setOnClickListener(this)
+        activityMainBinding.btnSearch.setOnKeyListener(this)
+
+        activityMainBinding.btnHome.setOnClickListener(this)
+        activityMainBinding.btnHome.setOnKeyListener(this)
+
+        activityMainBinding.btnMovies.setOnClickListener(this)
+        activityMainBinding.btnMovies.setOnKeyListener(this)
+
+        activityMainBinding.btnTv.setOnClickListener(this)
+        activityMainBinding.btnTv.setOnKeyListener(this)
+
+        activityMainBinding.btnSports.setOnClickListener(this)
+        activityMainBinding.btnSports.setOnKeyListener(this)
+
+        activityMainBinding.btnSettings.setOnClickListener(this)
+        activityMainBinding.btnSettings.setOnKeyListener(this)
+
+        activityMainBinding.btnLanguage.setOnClickListener(this)
+        activityMainBinding.btnLanguage.setOnKeyListener(this)
+
+        activityMainBinding.btnGenre.setOnClickListener(this)
+        activityMainBinding.btnGenre.setOnKeyListener(this)
+
+    }
+
+    private fun setUpInitialLayout() {
+        lastSelectedMenu = activityMainBinding.btnHome
+        lastSelectedMenu.isActivated = true
+        changeFragment(HomeFragment())
     }
 
     override fun onKey(view: View?, keyCode: Int, event: KeyEvent?): Boolean {
         when (keyCode) {
             KeyEvent.KEYCODE_DPAD_CENTER -> {
-
-                lastSelectedMenu.isActivated = false
-                view?.isActivated = true
-                lastSelectedMenu = view!!
-
-                when (view.id) {
-                    R.id.btn_search -> {
-                        selectedMenu = Constants.MENU_SEARCH
-                        changeFragment(SearchFragment())
-                    }
-
-                    R.id.btn_home -> {
-                        selectedMenu = Constants.MENU_HOME
-                        changeFragment(HomeFragment())
-                    }
-
-                    R.id.btn_tv -> {
-                        selectedMenu = Constants.MENU_TV
-                        changeFragment(TvShowFragment())
-                    }
-
-                    R.id.btn_movies -> {
-                        selectedMenu = Constants.MENU_MOVIE
-                        changeFragment(MovieFragment())
-                    }
-
-                    R.id.btn_sports -> {
-                        selectedMenu = Constants.MENU_SPORTS
-                        changeFragment(SportsFragment())
-                    }
-
-                    R.id.btn_settings -> {
-                        selectedMenu = Constants.MENU_SETTINGS
-                        changeFragment(SettingsFragment())
-                    }
-
-                    R.id.btn_language -> {
-                        selectedMenu = Constants.MENU_LANGUAGE
-                        changeFragment(LanguageFragment())
-                    }
-
-                    R.id.btn_genre -> {
-                        selectedMenu = Constants.MENU_GENRES
-                        changeFragment(GenresFragment())
-                    }
-                }
-
+                performActions(view)
             }
 
             KeyEvent.KEYCODE_DPAD_LEFT -> {
-                if (!SIDE_MENU) {
+                if (!isSideMenuEnabled) {
                     switchToLastSelectedMenu()
 
                     openMenu()
-                    SIDE_MENU = true
+                    isSideMenuEnabled = true
                 }
             }
         }
@@ -98,38 +88,46 @@ class MainActivity : FragmentActivity(), View.OnKeyListener {
     }
 
 
+    @Deprecated("Deprecated in Java")
     override fun onBackPressed() {
-        if (SIDE_MENU) {
-            SIDE_MENU = false
+        if (isSideMenuEnabled) {
+            isSideMenuEnabled = false
             closeMenu()
         } else {
             super.onBackPressed()
         }
     }
 
-    fun switchToLastSelectedMenu() {
+    private fun switchToLastSelectedMenu() {
         when (selectedMenu) {
             Constants.MENU_SEARCH -> {
                 activityMainBinding.btnSearch.requestFocus()
             }
+
             Constants.MENU_HOME -> {
                 activityMainBinding.btnHome.requestFocus()
             }
+
             Constants.MENU_TV -> {
                 activityMainBinding.btnTv.requestFocus()
             }
+
             Constants.MENU_MOVIE -> {
                 activityMainBinding.btnMovies.requestFocus()
             }
+
             Constants.MENU_SPORTS -> {
                 activityMainBinding.btnSports.requestFocus()
             }
+
             Constants.MENU_LANGUAGE -> {
                 activityMainBinding.btnLanguage.requestFocus()
             }
+
             Constants.MENU_GENRES -> {
                 activityMainBinding.btnGenre.requestFocus()
             }
+
             Constants.MENU_SETTINGS -> {
                 activityMainBinding.btnSettings.requestFocus()
             }
@@ -149,7 +147,7 @@ class MainActivity : FragmentActivity(), View.OnKeyListener {
         activityMainBinding.blfNavBar.layoutParams.width = Common.getWidthInPercent(this, 5)
 
         activityMainBinding.container.requestFocus()
-        SIDE_MENU = false
+        isSideMenuEnabled = false
     }
 
     private fun changeFragment(fragment: Fragment) {
@@ -157,5 +155,57 @@ class MainActivity : FragmentActivity(), View.OnKeyListener {
         transaction.replace(R.id.container, fragment)
         transaction.commit()
         closeMenu()
+    }
+
+    override fun onClick(view: View?) {
+        performActions(view)
+    }
+
+    private fun performActions(view: View?) {
+        lastSelectedMenu.isActivated = false
+        view?.isActivated = true
+        lastSelectedMenu = view!!
+
+        when (view.id) {
+            R.id.btn_search -> {
+                selectedMenu = Constants.MENU_SEARCH
+                changeFragment(SearchFragment())
+            }
+
+            R.id.btn_home -> {
+                selectedMenu = Constants.MENU_HOME
+                changeFragment(HomeFragment())
+            }
+
+            R.id.btn_tv -> {
+                selectedMenu = Constants.MENU_TV
+                changeFragment(TvShowFragment())
+            }
+
+            R.id.btn_movies -> {
+                selectedMenu = Constants.MENU_MOVIE
+                changeFragment(MovieFragment())
+            }
+
+            R.id.btn_sports -> {
+                selectedMenu = Constants.MENU_SPORTS
+                changeFragment(SportsFragment())
+            }
+
+            R.id.btn_settings -> {
+                selectedMenu = Constants.MENU_SETTINGS
+                changeFragment(SettingsFragment())
+            }
+
+            R.id.btn_language -> {
+                selectedMenu = Constants.MENU_LANGUAGE
+                changeFragment(LanguageFragment())
+            }
+
+            R.id.btn_genre -> {
+                selectedMenu = Constants.MENU_GENRES
+                changeFragment(GenresFragment())
+            }
+        }
     }
 }
