@@ -3,7 +3,7 @@ package com.android.tv.sample.utils
 object Constants {
 
     const val JSON: String = "movies.json"
-    const val IMAGE_URL: String = "https://www.themoviedb.org/t/p/w780"
+    const val IMAGE_URL: String = "https://image.tmdb.org/t/p/w500"
     const val MENU_SEARCH = "search"
     const val MENU_HOME = "home"
     const val MENU_TV = "tv"

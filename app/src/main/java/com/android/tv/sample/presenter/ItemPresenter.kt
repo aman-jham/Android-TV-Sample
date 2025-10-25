@@ -7,6 +7,7 @@ import android.widget.ImageView
 import androidx.leanback.widget.Presenter
 import com.android.tv.sample.R
 import com.android.tv.sample.data.local.DataModel
+import com.android.tv.sample.utils.Constants
 import com.bumptech.glide.Glide
 
 class ItemPresenter : Presenter() {
@@ -40,7 +41,7 @@ class ItemPresenter : Presenter() {
 
         val imageview = viewHolder?.view?.findViewById<ImageView>(R.id.poster_image)
 
-        val url = "https://www.themoviedb.org/t/p/w500" + content?.poster_path
+        val url = Constants.IMAGE_URL + content?.poster_path
         Glide.with(viewHolder?.view?.context!!)
             .load(url)
             .into(imageview!!)
