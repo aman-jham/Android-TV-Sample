@@ -1,33 +1,33 @@
-Android TV SAMPLE
-==================
+# Android TV Sample
 
-This sample app of videos, designed to run on an Android TV device, which demonstrates how to use the Leanback Support library which enables you to easily develop beautiful Android TV apps with a user-friendly UI that complies with the UX guidelines of Android TV.
+A sample app that demonstrates how to build video applications for Android TV using the Leanback Support library, ensuring a modern and user-friendly UI that complies with Android TV UX guidelines.
 
-The `MainActivity.kt` consist of leanback `BrowseFrameLayout`, that helping to show the navigation menu options and `FrameLayout` used for holding the different `fragments`.
+## Features
 
-The `HomeFragment` extents `Fragment` and attached the custom XML layout which consist of title, subtitle, description, banner image and `FragmentContainerView` used for holding the `ListFragment`
+- Uses **Leanback Support library** for designing beautiful, navigation-friendly TV interfaces.
+- Main components:
+    - `MainActivity.kt`: Sets up `BrowseFrameLayout` for navigation and `FrameLayout` for fragment management.
+    - `HomeFragment`: Custom layout with title, subtitle, description, banner image, and a container for other fragments.
+    - `ListFragment`: Uses `RowsSupportFragment` to display cards (video tiles).
+    - Other fragments, like `SearchFragment`, `MovieFragment`, `SportsFragment`, showcase sample content.
 
-The `ListFragment` extents `RowsSupportFragment` for displaying different cards.
 
-The `SearchFragment`,`MovieFragment`,`SportsFragment`, etc.. extents `Fragment` for displaying dummy contents.
+## Technologies
+
+- **Kotlin** — 100% of the codebase.
+
+
+## Getting Started
+
+1. Clone the repository.
+2. Open in Android Studio.
+3. Run on an Android TV device or emulator.
 
 ## Screenshots
 
-![Image2](screenshots/1.png)
-![Image2](screenshots/2.png)
-![Image3](screenshots/3.png)
-![Image4](screenshots/4.png)
-- 
-### Find this project useful ? :heart:
-
-* Support it by clicking the :star: button on the upper right of this page. :v:
-
-
-You can connect with me on:
-
-- [Twitter](https://twitter.com/AMANJHAM)
-- [LinkedIn](https://www.linkedin.com/in/aman-jham-9436276a/)
-- [GitHub](https://github.com/aman-jham)
+|      |      |      |      |
+| ---- | ---- | ---- | ---- |
+| ![Image1](screenshots/1.png) | ![Image2](screenshots/2.png) | ![Image3](screenshots/3.png) | ![Image4](screenshots/4.png) |
 
 ### License
 
@@ -46,3 +46,11 @@ You can connect with me on:
    See the License for the specific language governing permissions and
    limitations under the License.
 ```
+
+## Author \& Community
+
+If you find this project useful, please star ⭐ the repository.
+
+- Connect: [Twitter](https://twitter.com/AMANJHAM) | [LinkedIn](https://www.linkedin.com/in/aman-jham-9436276a/) | [GitHub](https://github.com/aman-jham)
+
+***
