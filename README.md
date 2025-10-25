@@ -25,9 +25,10 @@ A sample app that demonstrates how to build video applications for Android TV us
 
 ## Screenshots
 
-|      |      |      |      |
-| ---- | ---- | ---- | ---- |
-| ![Image1](screenshots/1.png) | ![Image2](screenshots/2.png) | ![Image3](screenshots/3.png) | ![Image4](screenshots/4.png) |
+|            |            |
+| ---------- | ---------- |
+| ![Image1](screenshots/1.png) | ![Image2](screenshots/2.png) |
+| ![Image3](screenshots/3.png) | ![Image4](screenshots/4.png) |
 
 ### License
 
